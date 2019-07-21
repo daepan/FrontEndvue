@@ -84,7 +84,7 @@
 export default {
     name: 'TableRow',
  	props: {
-		number:{
+	number:{
 			default: 0,
 			type: Number
 		},
@@ -119,8 +119,8 @@ export default {
 		add: function() {
         this.$emit("addline" , {
           	course: this.course,
-			score: this.score,
-			grade: this.grade,
+			score: this.score.number,
+			grade: this.grade.number,
 
 				})
         this.course = ""
