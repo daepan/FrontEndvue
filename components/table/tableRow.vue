@@ -39,25 +39,42 @@
 				</select>
 			</div>
             <div
-				v-if="state==='default' || state==='first'"
+				v-if=" state==='default' ||state==='first'"
 				class="row__grade">
 				{{ inputData.data.grade }}
+				
+				
+			</div>
+			
+
+		
+			<div
+				v-if=" state==='first'"
+				class="row__point"
+			>
+			{{ inputData.data.point}}
 			</div>
             <div
 				v-if="state==='add'"
-				class="row__grade">
+				class="row-add-input">
 				<select type="text" v-model="grade" >
-					<option :value="{number: 4}">A</option>
-					<option :value="{number: 3}">B</option>
-					<option :value="{number: 2}">C</option>
-					<option :value="{number: 1}">D</option>
-					<option :value="{number: 0}">F</option>
+					<option :value="{number: 4, text: 'A'}">A</option>
+					<option :value="{number: 3, text: 'B'}">B</option>
+					<option :value="{number: 2, text: 'C'}">C</option>
+					<option :value="{number: 1, text: 'D'}">D</option>
+					<option :value="{number: 0, text: 'F'}">F</option>
 				</select>
 			</div>
 			<div
 				v-if="state==='first'"
 				class="row__content__comtrol">
 				{{ inputData.data.control }}
+			</div>
+			<div
+				v-if="state==='default'"
+				class="row__point"
+			>
+				{{ inputData.data.point}}
 			</div>
 
 			<div
@@ -84,9 +101,13 @@
 export default {
     name: 'TableRow',
  	props: {
-	number:{
+		number:{
 			default: 0,
 			type: Number
+		},
+		text:{
+			default: '',
+			type: String
 		},
       index: {
         default: 0,
@@ -108,7 +129,8 @@ export default {
       return {
 				course: "",
 				score: "",
-				grade: ""
+				grade: "",
+				point:""
       }
     },
      methods: {
@@ -121,7 +143,7 @@ export default {
           	course: this.course,
 			score: this.score.number,
 			grade: this.grade.number,
-
+			point: this.grade.text
 				})
         this.course = ""
         this.score = ""
@@ -140,7 +162,7 @@ export default {
 		line-height: 40px;
 		float: center;
 		text-align: center;
-		background: #fefefe;
+		background: white;
 	}
 
 .row__content:hover {
@@ -172,13 +194,23 @@ export default {
 		border-right: 1px #bebebe solid;
 		width: 150px;
 	}
-
-.row__grade, .row__grade input {
-		float:left;
+	.row-add-input{
+		float: left;
 		border-right: 1px #bebebe solid;
-		width: 75px;
+		width: 300px;
 	}
 
+.row__grade,.row__grade input {
+		float: left;
+		border-right: 1px #bebebe solid;
+		width: 150px;
+	}
+	
+ .row__point, .row__point input{
+		float:left;
+		border-right: 1px #bebebe solid;
+		width: 150px;
+	}
 	
 input {
 		border : 1px solid #bebebe;
