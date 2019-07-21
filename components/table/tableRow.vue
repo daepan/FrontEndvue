@@ -33,9 +33,9 @@
 				v-if="state==='add'"
 				class="row__score">
 				<select type="text" v-model="score" >
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
+					<option :value="{number: 2}">2</option>
+					<option :value="{number: 3}">3</option>
+					<option :value="{number: 4}">4</option>
 				</select>
 			</div>
             <div
@@ -47,11 +47,11 @@
 				v-if="state==='add'"
 				class="row__grade">
 				<select type="text" v-model="grade" >
-					<option value="A">A</option>
-					<option value="B">B</option>
-					<option value="C">C</option>
-					<option value="D">D</option>
-					<option value="F">F</option>
+					<option :value="{number: 4}">A</option>
+					<option :value="{number: 3}">B</option>
+					<option :value="{number: 2}">C</option>
+					<option :value="{number: 1}">D</option>
+					<option :value="{number: 0}">F</option>
 				</select>
 			</div>
 			<div
@@ -84,6 +84,10 @@
 export default {
     name: 'TableRow',
  	props: {
+		number:{
+			default: 0,
+			type: Number
+		},
       index: {
         default: 0,
 				type: Number
@@ -113,7 +117,7 @@ export default {
 			},
 
 		add: function() {
-        this.$emit("addline", {
+        this.$emit("addline" , {
           	course: this.course,
 			score: this.score,
 			grade: this.grade,
